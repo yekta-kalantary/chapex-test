@@ -28,4 +28,16 @@ class ApiResponse extends JsonResponse
         $response['page-data'] = $pageData;
         parent::__construct($response, $httpStatus, $headers, $options);
     }
+
+    public static function handle(
+        $data = ["message" => "empty"],
+        $pageData = null,
+        $apiStatus = 200,
+        $httpStatus = 200,
+        $headers = [],
+        $options = 0
+    ): ApiResponse
+    {
+        return new self($data, $pageData, $apiStatus, $httpStatus, $headers, $options);
+    }
 }

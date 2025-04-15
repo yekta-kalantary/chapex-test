@@ -9,7 +9,8 @@ class ApiResponseWithPaginator extends JsonResponse
 {
     /**
      * @param $data
-     * @param $pageData
+     * @param null $pageData
+     * @param null $more
      * @param int $apiStatus
      * @param int $httpStatus
      * @param array $headers
@@ -47,5 +48,18 @@ class ApiResponseWithPaginator extends JsonResponse
 
         ];
         parent::__construct($response, $httpStatus, $headers, $options);
+    }
+
+    public static function handle(
+        $data,
+        $pageData = null,
+        $more = null,
+        $apiStatus = 200,
+        $httpStatus = 200,
+        $headers = [],
+        $options = 0
+    ): ApiResponseWithPaginator
+    {
+        return new self($data, $pageData, $more, $apiStatus, $httpStatus, $headers, $options);
     }
 }

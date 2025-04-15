@@ -18,8 +18,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'price_min' => 'nullable|integer|lt:price_max',
-            'price_max' => 'nullable|integer|gt:price_min',
+            'price_min' => 'nullable|integer',
+            'price_max' => 'nullable|integer',
             'category' => ['nullable', 'integer', Rule::exists('categories', 'id')],
             'search_term' => 'nullable|string',
             'per_page' => 'nullable|integer|min:1',

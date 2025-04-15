@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
-        $data['email'] = time().$data['email'];
+        
         $user = User::create($data);
         $token = $user->createToken('auth_token')->accessToken;
 

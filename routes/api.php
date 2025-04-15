@@ -24,5 +24,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
+    Route::apiResource('product', ProductController::class);
     Route::get('product-category', [ProductController::class, 'categoryList']);
 });

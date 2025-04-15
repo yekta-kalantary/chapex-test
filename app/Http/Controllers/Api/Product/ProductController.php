@@ -24,7 +24,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:products,name',
+            'category' => 'required|int|in:'.Category::all()->pluck('id')->implode(','),
+            'price' => 'required|int|min:0',
+            'description' => 'required|string|max:20000',
+        ]);
+
+        $product = Product::create($data);
+        $product->load('category');
+
+        return ApiResponse::handle([
+            'product' => $product,
+        ]);
     }
 
     /**

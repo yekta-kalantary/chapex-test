@@ -8,14 +8,15 @@ class ApiResponse extends JsonResponse
 {
     /**
      * ApiResponse constructor.
-     * @param array $data
-     * @param int $apiStatus
-     * @param int $httpStatus
-     * @param array $headers
-     * @param int $options
+     *
+     * @param  array  $data
+     * @param  int  $apiStatus
+     * @param  int  $httpStatus
+     * @param  array  $headers
+     * @param  int  $options
      */
     public function __construct(
-        $data = ["message" => "empty"],
+        $data = ['message' => 'empty'],
         $pageData = null,
         $apiStatus = 200,
         $httpStatus = 200,
@@ -30,14 +31,13 @@ class ApiResponse extends JsonResponse
     }
 
     public static function handle(
-        $data = ["message" => "empty"],
+        $data = ['message' => 'empty'],
         $pageData = null,
         $apiStatus = 200,
         $httpStatus = 200,
         $headers = [],
         $options = 0
-    ): ApiResponse
-    {
+    ): ApiResponse {
         return new self($data, $pageData, $apiStatus, $httpStatus, $headers, $options);
     }
 }

@@ -8,13 +8,12 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class ApiResponseWithPaginator extends JsonResponse
 {
     /**
-     * @param $data
-     * @param null $pageData
-     * @param null $more
-     * @param int $apiStatus
-     * @param int $httpStatus
-     * @param array $headers
-     * @param int $options
+     * @param  null  $pageData
+     * @param  null  $more
+     * @param  int  $apiStatus
+     * @param  int  $httpStatus
+     * @param  array  $headers
+     * @param  int  $options
      */
     public function __construct(
         $data,
@@ -24,8 +23,7 @@ class ApiResponseWithPaginator extends JsonResponse
         $httpStatus = 200,
         $headers = [],
         $options = 0
-    )
-    {
+    ) {
         $response = [];
         $response['status'] = $apiStatus;
         if ($data instanceof ResourceCollection) {
@@ -58,8 +56,7 @@ class ApiResponseWithPaginator extends JsonResponse
         $httpStatus = 200,
         $headers = [],
         $options = 0
-    ): ApiResponseWithPaginator
-    {
+    ): ApiResponseWithPaginator {
         return new self($data, $pageData, $more, $apiStatus, $httpStatus, $headers, $options);
     }
 }

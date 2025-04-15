@@ -42,17 +42,29 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+            'category' => 'required|int|in:'.Category::all()->pluck('id')->implode(','),
+            'price' => 'required|int|min:0',
+            'description' => 'required|string|max:20000',
+        ]);
+
+        $product->update($data);
+        $product->load('category');
+
+        return ApiResponse::handle([
+            'product' => $product,
+        ]);
     }
 
     /**

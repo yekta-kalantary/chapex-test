@@ -18,7 +18,8 @@ class Product extends Model
         'price' => 'integer',
     ];
 
-    public function category() {
-        return $this->belongsTo(Category::class , 'category');
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category');
     }
 }

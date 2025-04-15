@@ -10,14 +10,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function index(Request $request) {}
 
     /**
      * Store a newly created resource in storage.
@@ -32,7 +28,6 @@ class ProductController extends Controller
         ]);
 
         $product = Product::create($data);
-        $product->load('category');
 
         return ApiResponse::handle([
             'product' => $product,
@@ -45,6 +40,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load('category');
+
         return ApiResponse::handle([
             'product' => $product,
         ]);
@@ -56,14 +52,13 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+            'name' => 'required|string|max:255|unique:products,name,'.$product->id,
             'category' => 'required|int|in:'.Category::all()->pluck('id')->implode(','),
             'price' => 'required|int|min:0',
             'description' => 'required|string|max:20000',
         ]);
 
         $product->update($data);
-        $product->load('category');
 
         return ApiResponse::handle([
             'product' => $product,

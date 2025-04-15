@@ -44,7 +44,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
+        $product->load('category');
+        return ApiResponse::handle([
+            'product' => $product,
+        ]);
     }
 
     /**

@@ -20,7 +20,7 @@ class ProductController extends Controller
         $request->validate([
             'price_min' => 'nullable|integer',
             'price_max' => 'nullable|integer',
-            'category' => ['nullable', 'integer', Rule::exists('categories', 'id')],
+            'category' => ['nullable', 'integer',  Rule::in(Category::all()->pluck('id'))],
             'search_term' => 'nullable|string',
             'per_page' => 'nullable|integer|min:1',
             'order_by' => 'nullable|string|in:price,created_at',
@@ -35,10 +35,10 @@ class ProductController extends Controller
                 return $query->where('name', 'like', "%$searchTerm%");
             })
             ->when($request->input('price_min'), function ($query, $minPrice) {
-                return $query->where('price', '<=', $minPrice);
+                return $query->where('price', '>=', $minPrice);
             })
             ->when($request->input('price_max'), function ($query, $maxPrice) {
-                return $query->where('price', '>=', $maxPrice);
+                return $query->where('price', '<=', $maxPrice);
             })
             ->orderBy($request->input('order_by', 'id'), $request->input('order', 'desc'))
             ->paginate($request->input('per_page', 20));
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:products,name',
-            'category' => ['required', 'integer', Rule::exists('categories', 'id')],
+            'category' => ['required', 'integer', Rule::in(Category::all()->pluck('id'))],
             'price' => 'required|int|min:0',
             'description' => 'required|string|max:20000',
         ]);
@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:products,name,'.$product->id,
-            'category' => ['required', 'integer', Rule::exists('categories', 'id')],
+            'category' => ['required', 'integer',  Rule::in(Category::all()->pluck('id'))],
             'price' => 'required|int|min:0',
             'description' => 'required|string|max:20000',
         ]);

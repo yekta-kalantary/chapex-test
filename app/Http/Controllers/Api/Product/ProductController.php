@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Utility\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -16,10 +17,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $request->validate([
-            'price.min' => 'nullable|integer|lt:price_max',
-            'price.max' => 'nullable|integer|gt:price_max',
-            'category' => 'nullable|integer|in:'.Category::all()->pluck('id')->implode(','),
+        $request->validate([
+            'price_min' => 'nullable|integer|lt:price_max',
+            'price_max' => 'nullable|integer|gt:price_min',
+            'category' => ['nullable', 'integer', Rule::exists('categories', 'id')],
             'search_term' => 'nullable|string',
             'per_page' => 'nullable|integer|min:1',
             'order_by' => 'nullable|string|in:price,created_at',
@@ -27,20 +28,20 @@ class ProductController extends Controller
         ]);
 
         $products = Product::query()
-            ->when($data['category'] ?? null, function ($query, $category) {
+            ->when($request->input('category'), function ($query, $category) {
                 return $query->where('category', $category);
             })
-            ->when($data['search_term'] ?? null, function ($query, $searchTerm) {
+            ->when($request->input('search_term'), function ($query, $searchTerm) {
                 return $query->where('name', 'like', "%$searchTerm%");
             })
-            ->when($data['price']['min'] ?? null, function ($query, $minPrice) {
+            ->when($request->input('price_min'), function ($query, $minPrice) {
                 return $query->where('price', '<=', $minPrice);
             })
-            ->when($data['price']['max'] ?? null, function ($query, $maxPrice) {
+            ->when($request->input('price_max'), function ($query, $maxPrice) {
                 return $query->where('price', '>=', $maxPrice);
             })
-            ->orderBy($data['order_by'] ?? 'id', $data['order'] ?? 'desc')
-            ->paginate($data['per_page'] ?? 20);
+            ->orderBy($request->input('order_by', 'id'), $request->input('order', 'desc'))
+            ->paginate($request->input('per_page', 20));
 
         return ProductResource::collection($products);
     }
@@ -52,7 +53,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:products,name',
-            'category' => 'required|int|in:'.Category::all()->pluck('id')->implode(','),
+            'category' => ['required', 'integer', Rule::exists('categories', 'id')],
             'price' => 'required|int|min:0',
             'description' => 'required|string|max:20000',
         ]);
@@ -81,7 +82,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:products,name,'.$product->id,
-            'category' => 'required|int|in:'.Category::all()->pluck('id')->implode(','),
+            'category' => ['required', 'integer', Rule::exists('categories', 'id')],
             'price' => 'required|int|min:0',
             'description' => 'required|string|max:20000',
         ]);

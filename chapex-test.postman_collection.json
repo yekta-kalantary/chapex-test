@@ -1,0 +1,960 @@
+{
+	"info": {
+		"_postman_id": "e83436fd-ddf4-42a1-aec3-86bbbd844de1",
+		"name": "chapex-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11320442"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"yekta\",\n    \"email\": \"test@test.com\",\n    \"password\": \"12345AsDf!@£!@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/api/auth/register",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "### Description:\n\nregister new user\n\n**`POST`** `/api/auth/register`\n\n### Body Parameters (JSON):\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| name | string | Yes | required, max:255 |\n| email | string | Yes | required, max:255, valid email , uniqe in database user email |\n| password | string | Yes | required, min:8 |"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"yekta\",\n    \"email\": \"test@test.com\",\n    \"password\": \"12345AsDf!@£!@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/api/auth/register",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:28:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZmY5NjM5NTIzZGI4NDU3ZTU1ODkyNzI5NGRiNzA1NmRjYTNlY2Q2MmRkZWMxNDFkNTFlYzc4ZmVlMjU2MzFhZDIyZGUyODBjMDdhYmUxMjMiLCJpYXQiOjE3NDQ3MzA5MjIuMTQ1ODg4LCJuYmYiOjE3NDQ3MzA5MjIuMTQ1ODksImV4cCI6MTc3NjI2NjkyMi4xNDQ1OTgsInN1YiI6IjciLCJzY29wZXMiOltdfQ.JQ-_sivxpyjhfzdkcL4jVvA3C9akqlapFuFSKic0rdUikRMA-uOW-wjZcvcHCsSy3DaL2DKzOtuuXbpfwDsUMGnFssA2QcyvXJa_02K3oshT1Q9GPoIsUiKtI3VdyfJl6h9Z6zHNAzkcu4x_WlrDsP8L3h_XVf4PlsJWj-WxS89kdOQePnkVfuw-p_atpTQcYFv9QuB3l4ZscWKsHaWkwvpgS-nTmhWAJ2qaJy1JRcGSU90NX5ezggtWZ-wThqUtiaG7VSeKN0gvrxqGsWgvdSKBgFiv1IJy1yxet2G6T-KNgFnlSXKIp_kQfP6ipDqFdklwLvEcMrPaRlACv0zKOI2CNpHRy2tps-oRAHMyNH4Kn9rPcDcp9IrHMmkdsDmOsyZ5UbAS4I2pY2I5glPyCSKcctsz0ajOOP2Pdo2WU_a-AcAC1527OQYvumKpIhGvchhUCkWcnlrIKMsoe0mV8X9tmrjSOkqfiPqkCNabOzrwmIsCXbV29-7g5SZiqbWpBTtbNYlvE_cBCBKn9SW32d8b5hEbiOYxnL8OEXlrw6G5wgBym3B7gKTwSaflW8y_tN96ehJh-UnNeH7Jjn7qAeNqIMQbW1SqVgQKrhyOjj3uJjMREnI2o_EXbePfLTuW1g9Bzg_0YOXmLCd2zIlfF386Fuqal2mLvHy_DmL_77c\"\n    },\n    \"page-data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"1744717676test@test.com\",\n    \"password\": \"12345AsDf!@£!@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/api/auth/login",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "### Description:\n\nlogin user and get token\n\n**`POST`** `/api/auth/login`\n\n### Body Parameters (JSON):\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| email | string | Yes | required, max:255, valid email |\n| password | string | Yes | required, min:8 |"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"1744717676test@test.com\",\n    \"password\": \"12345AsDf!@£!@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/api/auth/login",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:28:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTdhYjk5NDQzMTFlMmMxNjkwMjgyZDQyNWRmOTg5ZDM1ODY2Y2YxOTg4MzVkOWQ2MGI5MDQzMjJhNTYxZWQ5NzUxNmJkODE1OWQ2MWFiZmYiLCJpYXQiOjE3NDQ3MzA5MTAuODU3Mjc2LCJuYmYiOjE3NDQ3MzA5MTAuODU3Mjc4LCJleHAiOjE3NzYyNjY5MTAuODU0MDMxLCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.JGX6HZmW_vp6TWsI13dBg-qKvaZUd10MQ8YXaNsfnZKX8XGMGK0630u5vg6HgKq_vBu8sYZc-bPlCjP6HHb8nGwWN8BZbTsVeuDNKl0EwKMCNpyNA74P_RLTNmHQYbuNavgs9gmfK07gN-uq5Xgx7HjrzOor1fh7EL0_y2OokEGXir3mOtljun5VNKKXs69slScC-UydmY4UgkCc5kxiNotXOxMUQeL6qeRUiUfkkIretrQmDkdRf1opF1QzJVv-G_y7aLfym5zplgqcfXFwYVBSd9udkc2ACYGKDV726LQxE21OI8k9llSRlvfyWT-leIO7LIacIqd_eiuu_YnVPf0ikbBPcp3oDijotBwoc3mMaC8IbNQlQlq8VF1tt0hj_6Zcnv_9yHH6STmUSVnagK0EValXJJDzur4R-1MoktoqL5wwrfYdBKrzz0vIBeB6Zw2wcjYWULH8ytK6QK4lEOIUxYMkW0wtHZ2EiDhwcYbtDDAmy9BCB0WtJPbo1VEuwJHIouzyiBeJ9rRohcC81JjyDQgA23g4bcmGP80OzOWmL_pQRkL3Nk_R-xZTiDUDzJDCf9MDAn9IF5l1zjZpWIQ2Licw204LibHNQCf7ymZ86eF6oLDyapzpa2slLxqLUtGdbGFz4v1_BpOGWXXVQSHoxISu_vmQMIFe4HD-VWI\"\n    },\n    \"page-data\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "product category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/api/product-category",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product-category"
+							]
+						},
+						"description": "## Get All Categories\n\n### 📌 Endpoint:\n\n`GET /api/product-category`\n\n### 📄 Description:\n\nReturns a list of all product categories."
+					},
+					"response": []
+				},
+				{
+					"name": "product create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pro wrvwvwfv\",\n    \"category\": 1,\n    \"price\": 2222,\n    \"description\": \"test product descrition\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/api/product",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						},
+						"description": "### Description:\n\ncreate new product\n\n**`POST`** `/api/product`\n\n### Body Parameters (JSON):\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| `name` | string | Yes | required, max:255, unique in `products.name` |\n| `category` | integer | Yes | required, must exist in `categories.id` |\n| `price` | integer | Yes | required, min:0 |\n| `description` | string | Yes | required, max:20000 |\n\n### Related Route:\n\nGet Category Ids and name\n\n**GET** `/api/product-category`"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"pro wrvwvwfv\",\n    \"category\": 1,\n    \"price\": 2222,\n    \"description\": \"test product descrition\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/api/product",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:30:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Product create successfully.\",\n        \"id\": 10\n    },\n    \"page-data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "product update by ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pro ddddd\",\n    \"category\": 1,\n    \"price\": 123,\n    \"description\": \"test product descrition\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/api/product/:product_id?_method=put",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								":product_id"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "put"
+								}
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "### Description:\n\nupdate existing product\n\n**`POST`** `/api/product/:product_id?_method=put`\n\n### Body Parameters (JSON):\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| `name` | string | Yes | required, max:255, unique in `products.name` |\n| `category` | integer | Yes | required, must exist in `categories.id` |\n| `price` | integer | Yes | required, min:0 |\n| `description` | string | Yes | required, max:20000 |\n\n### Path Parameters:\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| `product_id` | int | Yes | required, must exist product in database else return 404 |\n\n### Related Route:\n\nGet Category Ids and name\n\n**GET** `/api/product-category`"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"pro ddddd\",\n    \"category\": 1,\n    \"price\": 123,\n    \"description\": \"test product descrition\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/api/product/:product_id?_method=put",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										":product_id"
+									],
+									"query": [
+										{
+											"key": "_method",
+											"value": "put"
+										}
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:30:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Product saved successfully.\",\n        \"id\": 1\n    },\n    \"page-data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "product get by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/api/product/:product_id",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "### Description:\n\nretrieve existing product data by prodct ID\n\n**`GET`** `/api/product/:product_id`\n\n### Path Parameters:\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| `product_id` | int | Yes | required, must exist product in database else return 404 |"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{api_url}}/api/product/:product_id",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:31:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"pro ddddd\",\n        \"description\": \"test product descrition\",\n        \"price\": 123,\n        \"category\": 1,\n        \"created_at\": \"2025-04-15T13:47:30.000000Z\",\n        \"updated_at\": \"2025-04-15T15:30:43.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "product delete by ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/api/product/:product_id?_method=delete",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								":product_id"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "delete"
+								}
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "### Description:\n\ndelete existing product data by prodct ID\n\n**`GET`** `/api/product/:product?_method=delete`\n\n### Path Parameters:\n\n| Parameter | Type | Required | Rules |\n| --- | --- | --- | --- |\n| `product_id` | int | Yes | required, must exist product in database else return 404 |"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{api_url}}/api/product/:product_id?_method=delete",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										":product_id"
+									],
+									"query": [
+										{
+											"key": "_method",
+											"value": "delete"
+										}
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:31:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Product removed successfully.\"\n    },\n    \"page-data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "product get by paginate and filter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/api/product?price_min=122&price_max=124",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "search_term",
+									"value": "title1",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "order_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "price_min",
+									"value": "122"
+								},
+								{
+									"key": "price_max",
+									"value": "124"
+								}
+							]
+						},
+						"description": "### Description:\n\nReturns a paginated list of products. You can filter the results by category, price range, or search term, and also sort the results.\n\n**`GET`** `/api/product`\n\n### 🔍 Query Parameters:\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `category` | integer | No | Filter by category ID (must exist in `categories` table). |\n| `search_term` | string | No | Filter products by partial match on product name. |\n| `price_min` | integer | No | Minimum price (must be less than `price_max`). |\n| `price_max` | integer | No | Maximum price (must be greater than `price_min`). |\n| `per_page` | integer | No | Number of results per page (default: 20). |\n| `order_by` | string | No | Sort by a field: `price`, `created_at`. |\n| `order` | string | No | Sort direction: `asc`, `desc`. |"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{api_url}}/api/product?price_min=122&price_max=124",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"api",
+										"product"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "search_term",
+											"value": "title1",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"disabled": true
+										},
+										{
+											"key": "order_by",
+											"value": "price",
+											"disabled": true
+										},
+										{
+											"key": "price_min",
+											"value": "122"
+										},
+										{
+											"key": "price_max",
+											"value": "124"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Apr 2025 15:31:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"name\": \"pro ss\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T14:11:45.000000Z\",\n            \"updated_at\": \"2025-04-15T14:11:45.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"pro 11\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T14:11:09.000000Z\",\n            \"updated_at\": \"2025-04-15T14:11:56.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"pro tit2l2e21\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T14:08:07.000000Z\",\n            \"updated_at\": \"2025-04-15T14:08:07.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"pro tit2le21\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T13:49:05.000000Z\",\n            \"updated_at\": \"2025-04-15T13:49:05.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"pro tit2le1\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T13:48:29.000000Z\",\n            \"updated_at\": \"2025-04-15T13:48:29.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"pro title1\",\n            \"description\": \"test product descrition\",\n            \"price\": 123,\n            \"category\": 1,\n            \"created_at\": \"2025-04-15T13:48:02.000000Z\",\n            \"updated_at\": \"2025-04-15T13:48:02.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/product?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/product?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/product?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/product\",\n        \"per_page\": 20,\n        \"to\": 6,\n        \"total\": 6\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

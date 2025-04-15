@@ -59,9 +59,11 @@ class ProductController extends Controller
 
         $product = Product::create($data);
 
-        return ProductResource::make([
-            'product' => $product,
+        return new ApiResponse([
+            'message' => 'Product create successfully.',
+            'id' => $product->id,
         ]);
+
     }
 
     /**
@@ -69,11 +71,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('category');
-
-        return ApiResponse::handle([
-            'product' => $product,
-        ]);
+        return ProductResource::make($product);
     }
 
     /**
@@ -90,9 +88,11 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return ApiResponse::handle([
-            'product' => $product,
+        return new ApiResponse([
+            'message' => 'Product saved successfully.',
+            'id' => $product->id,
         ]);
+
     }
 
     /**
@@ -105,10 +105,8 @@ class ProductController extends Controller
         return new ApiResponse(['message' => 'Product removed successfully.']);
     }
 
-    public function categoryList(Request $request)
+    public function categoryList()
     {
-        return ApiResponse::handle([
-            'categories' => Category::all(),
-        ]);
+        return ApiResponse::handle(Category::all());
     }
 }

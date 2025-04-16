@@ -1,5 +1,3 @@
-Got it! Here's the **final production-ready `README.md`** content, clean and ready to copy:
-
 # Chapex Test – Laravel Passport API
 
 This is a Laravel-based API project using [Laravel Passport](https://laravel.com/docs/passport) for authentication with personal access tokens.
